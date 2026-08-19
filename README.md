@@ -34,11 +34,11 @@ src/
   pages/
     Home.jsx
     Events.jsx
-    Schedule.jsx    <- swap with your existing constellation Schedule page
+    Schedule.jsx   
     Contact.jsx
   App.jsx
   main.jsx
-  index.css          <- Tailwind 4 CSS-first config (@theme block)
+  index.css          
 ```
 
 ## Changing the countdown date
