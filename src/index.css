@@ -20,15 +20,29 @@ html {
 }
 
 body {
-  background-color: black;
   margin: 0;
+  padding: 0;
+  background: #000000;
+  color: white;
   overflow-x: hidden;
+  font-family: "Inter", sans-serif;
 }
 
-/* Custom glow utility (Tailwind 4 arbitrary shadow works too, this is a convenience class) */
+* {
+  box-sizing: border-box;
+}
+
 .shadow-glow {
   box-shadow: var(--shadow-glow);
 }
+
 .shadow-glow-lg {
   box-shadow: var(--shadow-glow-lg);
+}
+
+/* Prevent horizontal overflow on mobile */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
