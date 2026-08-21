@@ -25,8 +25,8 @@ function GlowDot() {
   }, []);
   return (
     <span className="absolute -left-[26px] top-1 w-3 h-3 flex items-center justify-center">
-      <span ref={ref} className="absolute inset-0 rounded-full bg-sky-300/70" style={{ filter: "blur(5px)" }} />
-      <span className="relative w-2 h-2 rounded-full bg-white" style={{ boxShadow: "0 0 8px 2px rgba(95,198,255,.7)" }} />
+      <span ref={ref} className="absolute inset-0 rounded-full bg-blue-500/70" style={{ filter: "blur(5px)" }} />
+      <span className="relative w-2 h-2 rounded-full bg-white" style={{ boxShadow: "0 0 8px 2px rgba(59,130,246,.7)" }} />
     </span>
   );
 }
@@ -35,9 +35,9 @@ function EventPairCard({ events }) {
   return (
     <div className="grid grid-cols-2 gap-2 mt-2">
       {events.map((ev) => (
-        <div key={ev.id} className="bg-slate-950/70 border border-sky-900/50 rounded-lg px-3 py-2.5">
+        <div key={ev.id} className="bg-slate-950/70 border border-blue-500/50 rounded-lg px-3 py-2.5">
           <p className="text-[12px] font-semibold text-white leading-tight">{ev.title}</p>
-          <p className="text-[10px] text-sky-300 mt-1">{ev.venue}</p>
+          <p className="text-[10px] text-blue-500 mt-1">{ev.venue}</p>
           <p className="text-[10px] text-slate-400 mt-1 leading-snug">{ev.desc}</p>
         </div>
       ))}
@@ -69,11 +69,11 @@ export default function MobileTimeline() {
 
   return (
     <div ref={wrapRef} className="relative pl-8">
-      <div className="absolute left-[7px] top-2 bottom-6 w-[2px] bg-sky-900/30" />
+      <div className="absolute left-[7px] top-2 bottom-6 w-[2px] bg-blue-500/30" />
       <div
         ref={fillRef}
-        className="absolute left-[7px] top-2 w-[2px] bg-sky-400"
-        style={{ boxShadow: "0 0 8px rgba(95,198,255,.7)" }}
+        className="absolute left-[7px] top-2 w-[2px] bg-blue-500"
+        style={{ boxShadow: "0 0 8px rgba(59,130,246,.7)" }}
       />
 
       {scheduleTimeline.map((item) => {
@@ -82,7 +82,7 @@ export default function MobileTimeline() {
             <div key={item.id} className="relative pb-10">
               <GlowDot />
               <div className="time-scroll">
-                <span className="text-[10px] tracking-widest text-sky-300 font-body">{item.time}</span>
+                <span className="text-[10px] tracking-widest text-blue-500 font-body">{item.time}</span>
               </div>
               <p className="text-[15px] font-semibold text-white mt-0.5">{item.title}</p>
               {item.venue && <p className="text-[11px] text-slate-400 mt-0.5">{item.venue}</p>}
@@ -93,14 +93,14 @@ export default function MobileTimeline() {
         // cluster
         return (
           <div key={item.id} className="relative pb-6">
-            <p className="text-[10px] tracking-[3px] text-sky-300/90 font-body mb-3 border border-sky-800/50 inline-block rounded-full px-3 py-1 bg-slate-950/60">
+            <p className="text-[10px] tracking-[3px] text-blue-500/90 font-body mb-3 border border-blue-500/50 inline-block rounded-full px-3 py-1 bg-slate-950/60">
               {item.label}
             </p>
             {item.slots.map((slot) => (
               <div key={slot.id} className="relative pb-8">
                 <GlowDot />
                 <div className="time-scroll">
-                  <span className="text-[10px] tracking-widest text-sky-300 font-body">{slot.time}</span>
+                  <span className="text-[10px] tracking-widest text-blue-500 font-body">{slot.time}</span>
                 </div>
                 <p className="text-[11px] text-slate-500 mt-0.5">2 events running in parallel</p>
                 <EventPairCard events={slot.events} />

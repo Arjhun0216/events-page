@@ -19,7 +19,7 @@ export default function StarField({ count = 120 }) {
       {stars.map((star) => (
         <span
           key={star.id}
-          className="absolute rounded-full bg-blue-200"
+          className="absolute rounded-full bg-blue-500"
           style={{
             top: `${star.top}%`,
             left: `${star.left}%`,

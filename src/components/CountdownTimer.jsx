@@ -37,12 +37,12 @@ export default function CountdownTimer() {
       {units.map((unit) => (
         <div
           key={unit.label}
-          className="flex flex-col items-center justify-center w-16 h-16 md:w-20 md:h-20 border border-blue-500/50 rounded-md bg-blue-950/20 shadow-glow backdrop-blur-sm"
+          className="flex flex-col items-center justify-center w-16 h-16 md:w-20 md:h-20 border border-blue-500/50 rounded-md bg-blue-500/20 shadow-glow backdrop-blur-sm"
         >
           <span className="font-serif2 text-xl md:text-2xl text-white font-semibold">
             {String(unit.value).padStart(2, '0')}
           </span>
-          <span className="text-[8px] md:text-[9px] text-blue-300 tracking-wider mt-1">
+          <span className="text-[8px] md:text-[9px] text-blue-500 tracking-wider mt-1">
             {unit.label}
           </span>
         </div>

@@ -9,21 +9,21 @@ import "../styles/schedule.css";
 
 export default function Schedule() {
   return (
-    <div className="min-h-screen bg-bg text-white font-body relative overflow-hidden">
+    <div className="min-h-screen bg-phantasm-navy text-white font-body relative overflow-hidden">
       <Navbar />
 
       <div className="starfield" />
       <div className="glow-arc" />
 
-      <section className="relative z-10 text-center pt-14 md:pt-16 pb-6 px-6 border-b border-sky-950/40">
-        <p className="text-[11px] tracking-[4px] text-sky-300 mb-3">THE STAR CHART</p>
+      <section className="relative z-10 text-center pt-14 md:pt-16 pb-6 px-6 border-b border-blue-500/40">
+        <p className="text-[11px] tracking-[4px] text-blue-500 mb-3 font-body">THE STAR CHART</p>
         <h1
-          className="font-display text-4xl md:text-5xl tracking-wide text-white"
-          style={{ textShadow: "0 0 20px rgba(95,198,255,.35)" }}
+          className="font-gothic text-4xl md:text-5xl tracking-wide text-white"
+          style={{ textShadow: "0 0 20px rgba(59,130,246,.35)" }}
         >
           SCHEDULE
         </h1>
-        <p className="text-slate-400 text-sm mt-3 max-w-md mx-auto">
+        <p className="font-serif2 text-slate-400 text-sm mt-3 max-w-md mx-auto">
           One day, one path — trace it from the opening ceremony to the final applause.
         </p>
       </section>

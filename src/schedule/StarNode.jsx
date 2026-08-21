@@ -68,14 +68,14 @@ const starSize = size === "sm" ? "w-3.5 h-3.5" : "w-[18px] h-[18px]";
       <span className="relative flex items-center justify-center w-6 h-6">
         <span
           ref={glowRef}
-          className="absolute inset-0 rounded-full bg-sky-300/70"
+          className="absolute inset-0 rounded-full bg-blue-500/70"
           style={{ filter: "blur(7px)" }}
         />
         <svg
           ref={starRef}
           viewBox="0 0 24 24"
           className={`relative ${starSize}`}
-          style={{ filter: "drop-shadow(0 0 6px rgba(95,198,255,0.85))" }}
+          style={{ filter: "drop-shadow(0 0 6px rgba(59,130,246,0.85))" }}
         >
           <path
             d="M12 0 C12 6 13 10 13 10 C13 10 17 11 24 12 C17 13 13 14 13 14 C13 14 12 18 12 24 C12 18 11 14 11 14 C11 14 7 13 0 12 C7 11 11 10 11 10 C11 10 12 6 12 0 Z"
@@ -84,7 +84,7 @@ const starSize = size === "sm" ? "w-3.5 h-3.5" : "w-[18px] h-[18px]";
         </svg>
       </span>
 
-      <span className="mt-2 text-[10px] tracking-widest text-sky-300 font-body whitespace-nowrap">
+      <span className="mt-2 text-[10px] tracking-widest text-blue-500 font-body whitespace-nowrap">
         {time}
       </span>
       <span className="text-[13px] font-semibold text-white font-body whitespace-nowrap">
@@ -93,11 +93,11 @@ const starSize = size === "sm" ? "w-3.5 h-3.5" : "w-[18px] h-[18px]";
 
       <div
         ref={cardRef}
-        className={`absolute left-1/2 -translate-x-1/2 w-52 opacity-0 bg-slate-950/85 border border-sky-900/60
+        className={`absolute left-1/2 -translate-x-1/2 w-52 opacity-0 bg-slate-950/85 border border-blue-500/60
                     rounded-lg px-4 py-3 backdrop-blur-sm text-left z-30 pointer-events-none
                     ${cardSide === "bottom" ? "top-[125%]" : "bottom-[125%]"}`}
       >
-        <p className="text-xs font-bold text-sky-300 mb-1">{title}</p>
+        <p className="text-xs font-bold text-blue-500 mb-1">{title}</p>
         <p className="text-[11px] text-slate-300 leading-snug mb-2">{desc}</p>
         <div className="flex justify-between text-[10px] text-slate-400">
           <span>Venue</span>

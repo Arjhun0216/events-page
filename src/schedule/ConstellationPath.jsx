@@ -42,7 +42,7 @@ export default function ConstellationPath({ d, delay = 0, thin = false }) {
       stroke="url(#constellationGradient)"
       strokeWidth={thin ? 1 : 1.4}
       strokeOpacity={thin ? 0.6 : 0.9}
-      style={{ filter: "drop-shadow(0 0 4px rgba(95,198,255,0.45))" }}
+      style={{ filter: "drop-shadow(0 0 4px rgba(59,130,246,0.45))" }}
     />
   );
 }

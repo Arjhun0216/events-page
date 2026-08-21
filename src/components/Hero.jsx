@@ -23,14 +23,14 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 h-full flex flex-col md:flex-row md:items-start">
         <div className="max-w-xl w-full flex flex-col justify-start pt-10 md:pt-10 md:h-auto h-auto pb-20 md:pb-0">
-          <p className="text-blue-400 text-[10px] sm:text-xs md:text-sm tracking-[0.3em] font-body mb-3 sm:mb-4">
+          <p className="text-blue-500 text-[10px] sm:text-xs md:text-sm tracking-[0.3em] font-body mb-3 sm:mb-4">
             WELCOME TO
           </p>
 
-          <h1 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight sm:leading-none drop-shadow-[0_0_25px_rgba(96,165,250,0.5)]">
+          <h1 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight sm:leading-none drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]">
             PHANTASM
           </h1>
-          <p className="font-serif2 text-blue-200 text-xs sm:text-sm md:text-base tracking-[0.35em] mt-2">
+          <p className="font-serif2 text-blue-500 text-xs sm:text-sm md:text-base tracking-[0.35em] mt-2">
             CSE SYMPOSIUM 2026
           </p>
 
@@ -44,7 +44,7 @@ export default function Hero() {
             A national level technical symposium where bright minds meet, create and shape the future.
           </p>
 
-          <p className="text-blue-400 text-[10px] sm:text-xs tracking-[0.3em] font-body mb-4">
+          <p className="text-blue-500 text-[10px] sm:text-xs tracking-[0.3em] font-body mb-4">
             THE COUNTDOWN BEGINS
           </p>
 
@@ -54,8 +54,8 @@ export default function Hero() {
 
       {/* Scroll to explore - Hidden on mobile, visible on tablet+ */}
       <div className="hidden sm:flex absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1 animate-bounce">
-        <ChevronDown className="text-blue-400" size={18} />
-        <span className="text-blue-300 text-[10px] tracking-[0.3em] font-body">
+        <ChevronDown className="text-blue-500" size={18} />
+        <span className="text-blue-500 text-[10px] tracking-[0.3em] font-body">
           SCROLL TO EXPLORE
         </span>
       </div>

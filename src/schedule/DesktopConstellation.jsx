@@ -54,8 +54,8 @@ export default function DesktopConstellation() {
       >
         <defs>
           <linearGradient id="constellationGradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#5fc6ff" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#8b85ff" stopOpacity="0.9" />
+            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.9" />
           </linearGradient>
         </defs>
 
@@ -80,7 +80,7 @@ export default function DesktopConstellation() {
 
         {/* junction dots where branches leave the spine */}
         {Object.values(ORIGINS).map((o, i) => (
-          <circle key={i} cx={vx(o.x)} cy={vy(o.y)} r="3" fill="#5fc6ff" fillOpacity="0.7" />
+          <circle key={i} cx={vx(o.x)} cy={vy(o.y)} r="3" fill="#60a5fa" fillOpacity="0.7" />
         ))}
       </svg>
 
@@ -109,8 +109,8 @@ export default function DesktopConstellation() {
       {clusters.map((cluster) => (
         <div key={cluster.id}>
           <div
-            className="absolute -translate-x-1/2 text-[10px] tracking-[3px] text-sky-300/90 font-body
-                       border border-sky-800/60 rounded-full px-3 py-1 bg-slate-950/60"
+            className="absolute -translate-x-1/2 text-[10px] tracking-[3px] text-blue-500/90 font-body
+                       border border-blue-500/60 rounded-full px-3 py-1 bg-slate-950/60"
             style={{
               left: `${
                 (ORIGINS[cluster.slots[0].id].x + ORIGINS[cluster.slots[cluster.slots.length - 1].id].x) / 2
