@@ -12,6 +12,7 @@ import {
   Youtube,
 } from "lucide-react";
 import Navbar from "./Navbar";
+import { Home, ChevronRight, Users, MapPin, Phone, ExternalLink, Signpost, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const coordinators = [
   { name: "M. Dhivyasri", phone: "+91 8248466142" },
@@ -20,12 +21,8 @@ const coordinators = [
   { name: "R. Keerthivasan", phone: "+91 9159325594" },
 ];
 
-const quickLinks = [
-  { name: "Home", path: "/" },
-  { name: "Events", path: "/events" },
-  { name: "Schedule", path: "/schedule" },
-  { name: "Contact Us", path: "/contact" },
-];
+const navLinks = ["HOME", "EVENTS", "SCHEDULE", "CONTACT"];
+const quickLinks = ["Home", "Events", "Schedule", "Contact Us", "Register"];
 
 const socialLinks = {
   instagram:
@@ -50,6 +47,43 @@ export default function ContactUsPage() {
         {/* ================= BREADCRUMB ================= */}
         <div className="flex items-center gap-2 text-xs sm:text-sm text-[#3b82f6] mb-3">
           <Home className="w-4 h-4" />
+    <div className="h-screen w-screen overflow-hidden bg-[#050810] text-white font-sans flex flex-col">
+      {/* Navbar */}
+      <header className="flex items-center justify-between px-6 md:px-12 py-3 border-b border-white/5 shrink-0">
+        <div>
+          <div className="text-xl font-extrabold tracking-tight leading-none">
+            <span className="text-[#3b82f6]">PHANTASM</span>
+          </div>
+          <div className="text-[10px] tracking-widest text-gray-400">CSE SYMPOSIUM</div>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+          {navLinks.map((link) => (
+            <a
+              key={link}
+              href="#"
+              className={
+                link === "CONTACT"
+                  ? "text-[#3b82f6] border-b-2 border-[#3b82f6] pb-1"
+                  : "text-gray-200 hover:text-[#3b82f6] transition-colors"
+              }
+            >
+              {link}
+            </a>
+          ))}
+        </nav>
+        <a href="https://forms.gle/your-registration-form"
+         target="_blank"
+         rel="noopener noreferrer"
+         className="flex items-center gap-1 border border-white/20 rounded-md px-4 py-1.5 text-sm font-medium tracking-wide" >
+         REGISTER NOW <ChevronRight className="w-4 h-4" />
+        </a>
+      </header>
+
+      <main className="flex-1 min-h-0 px-6 md:px-12 py-3 flex flex-col overflow-hidden">
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-[#3b82f6] mb-1 shrink-0">
+          <Home className="w-3.5 h-3.5" />
           <span>/</span>
           <span>CONTACT US</span>
         </div>
@@ -475,6 +509,12 @@ export default function ContactUsPage() {
                   >
                     {link.name}
                   </Link>
+            <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-gray-300 mt-1">
+              {quickLinks.map((l) => (
+                <li key={l}>
+                  <a href="#" className="hover:text-[#3b82f6] transition-colors">
+                    {l}
+                  </a>
                 </li>
               ))}
             </ul>

@@ -6,7 +6,7 @@
 // All positions are hand-placed percentages so the layout stays readable;
 // tweak the POSITIONS map below if you rename/reorder events later.
 
-import { scheduleTimeline } from "../data/scheduleData";
+import { scheduleTimeline } from "../../data/scheduleData";
 import ConstellationPath from "./ConstellationPath";
 import StarNode from "./StarNode";
 
@@ -17,8 +17,8 @@ const POSITIONS = {
   valedictory: { x: 95, y: 50 },
 
   innosphere: { x: 18, y: 16 },
-  techtrinity: { x: 34, y: 16 },
-  visionforge: { x: 22, y: 84  },
+  techtrinity: { x: 22, y: 84 },
+  visionforge: { x: 34, y: 16 },
   datalens: { x: 38, y: 84 },
 
   questexe: { x: 62, y: 16 },
