@@ -12,7 +12,6 @@ import {
   Youtube,
 } from "lucide-react";
 import Navbar from "./Navbar";
-import { Home, ChevronRight, Users, MapPin, Phone, ExternalLink, Signpost, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const coordinators = [
   { name: "M. Dhivyasri", phone: "+91 8248466142" },
@@ -21,14 +20,18 @@ const coordinators = [
   { name: "R. Keerthivasan", phone: "+91 9159325594" },
 ];
 
-const navLinks = ["HOME", "EVENTS", "SCHEDULE", "CONTACT"];
-const quickLinks = ["Home", "Events", "Schedule", "Contact Us", "Register"];
+const quickLinks = [
+  { name: "Home", path: "/" },
+  { name: "Events", path: "/events" },
+  { name: "Schedule", path: "/schedule" },
+  { name: "Contact Us", path: "/contact" },
+];
 
 const socialLinks = {
   instagram:
     "https://www.instagram.com/targaryenz.gceb?igsh=d2M5M2l2Ym5tMWF5&igsi=d2M5M2l2Ym5tMWF5",
   linkedin: "https://www.linkedin.com/in/final-year-cse-33b5a342b/",
-  youtube: "https://youtube.com/@nafeesabegum3359?si=x84StrbXV_pQmE8w",
+  youtube: "https://www.youtube.com/",
 };
 
 const GOOGLE_MAPS_URL =
@@ -45,53 +48,16 @@ export default function ContactUsPage() {
       <main className="w-full px-4 sm:px-6 md:px-10 lg:px-12 pt-24 sm:pt-28 pb-8">
 
         {/* ================= BREADCRUMB ================= */}
-        <div className="flex items-center gap-2 text-xs sm:text-sm text-[#3b82f6] mb-3">
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-blue-500 mb-3">
           <Home className="w-4 h-4" />
-    <div className="h-screen w-screen overflow-hidden bg-[#050810] text-white font-sans flex flex-col">
-      {/* Navbar */}
-      <header className="flex items-center justify-between px-6 md:px-12 py-3 border-b border-white/5 shrink-0">
-        <div>
-          <div className="text-xl font-extrabold tracking-tight leading-none">
-            <span className="text-[#3b82f6]">PHANTASM</span>
-          </div>
-          <div className="text-[10px] tracking-widest text-gray-400">CSE SYMPOSIUM</div>
-        </div>
-
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href="#"
-              className={
-                link === "CONTACT"
-                  ? "text-[#3b82f6] border-b-2 border-[#3b82f6] pb-1"
-                  : "text-gray-200 hover:text-[#3b82f6] transition-colors"
-              }
-            >
-              {link}
-            </a>
-          ))}
-        </nav>
-        <a href="https://forms.gle/your-registration-form"
-         target="_blank"
-         rel="noopener noreferrer"
-         className="flex items-center gap-1 border border-white/20 rounded-md px-4 py-1.5 text-sm font-medium tracking-wide" >
-         REGISTER NOW <ChevronRight className="w-4 h-4" />
-        </a>
-      </header>
-
-      <main className="flex-1 min-h-0 px-6 md:px-12 py-3 flex flex-col overflow-hidden">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-[#3b82f6] mb-1 shrink-0">
-          <Home className="w-3.5 h-3.5" />
           <span>/</span>
           <span>CONTACT US</span>
         </div>
 
         {/* ================= TITLE ================= */}
         <div className="mb-7">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
-            CONTACT <span className="text-[#3b82f6]">US</span>
+          <h1 className="font-gothic text-3xl sm:text-4xl md:text-5xl tracking-tight">
+            CONTACT <span className="text-blue-500">US</span>
           </h1>
 
           <p className="text-gray-300 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
@@ -100,6 +66,7 @@ export default function ContactUsPage() {
           </p>
         </div>
 
+        {/* ================= COORDINATORS + MAP ================= */}
         {/* ================= COORDINATORS + MAP ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 mb-5">
 
@@ -111,31 +78,21 @@ export default function ContactUsPage() {
               rounded-2xl
               p-4 sm:p-5
               bg-white/[0.02]
+              shadow-glow
             "
           >
 
             {/* Heading */}
             <div className="flex items-center gap-2 mb-3">
-              <Users className="w-5 h-5 text-[#3b82f6]" />
+              <Users className="w-5 h-5 text-blue-500" />
 
-              <h2 className="text-base sm:text-lg font-semibold">
+              <h2 className="font-serif2 text-base sm:text-lg font-semibold">
                 OUR COORDINATORS
               </h2>
             </div>
 
             {/* Coordinator Cards */}
-            <div
-              className="
-                relative
-                top-8
-                grid
-                grid-cols-1
-                sm:grid-cols-2
-                md:grid-cols-4
-                gap-2
-                sm:gap-3
-              "
-            >
+            <div className="relative top-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
               {coordinators.map((c) => (
                 <div
                   key={c.name}
@@ -150,9 +107,10 @@ export default function ContactUsPage() {
                     items-center
                     justify-center
                     text-center
-                    bg-[#080d18]
+                    bg-phantasm-navy
+                    shadow-glow
 
-                    hover:border-[#3b82f6]/60
+                    hover:border-blue-500/60
                     hover:shadow-[0_0_20px_rgba(59,130,246,0.12)]
 
                     transition-all
@@ -164,7 +122,7 @@ export default function ContactUsPage() {
                     className="
                       w-12 h-12
                       rounded-full
-                      border border-[#3b82f6]/60
+                      border border-blue-500/60
                       flex items-center justify-center
                       mb-3
                     "
@@ -178,43 +136,23 @@ export default function ContactUsPage() {
                     </svg>
                   </div>
 
-                  {/* Name */}
                   <h3 className="font-semibold text-sm sm:text-base whitespace-nowrap">
                     {c.name}
                   </h3>
 
-                  {/* Role */}
-                  <p className="text-xs text-gray-400 mt-1">
-                    Coordinator
-                  </p>
+                  <p className="text-xs text-gray-400 mt-1">Coordinator</p>
 
-                  {/* Phone */}
                   <p className="text-xs sm:text-sm text-gray-200 mt-3 whitespace-nowrap">
                     {c.phone}
                   </p>
 
-                  {/* Call Button */}
                   <a
                     href={`tel:${c.phone.replace(/\s+/g, "")}`}
                     aria-label={`Call ${c.name}`}
-                    className="
-                      mt-4
-                      w-10 h-10
-                      rounded-full
-                      border border-[#3b82f6]/50
-                      flex
-                      items-center
-                      justify-center
-
-                      hover:bg-[#3b82f6]/10
-                      hover:border-[#3b82f6]
-
-                      transition-all
-                    "
+                    className="mt-4 w-10 h-10 rounded-full border border-blue-500/50 flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500 transition-all"
                   >
-                    <Phone className="w-4 h-4 text-[#3b82f6]" />
+                    <Phone className="w-4 h-4 text-blue-500" />
                   </a>
-
                 </div>
               ))}
             </div>
@@ -222,16 +160,11 @@ export default function ContactUsPage() {
 
           {/* ================= FIND US ================= */}
           <section
-            className="
-              border border-white/10
-              rounded-2xl
-              p-4 sm:p-5
-              bg-white/[0.02]
-            "
+            className="border border-white/10 rounded-2xl p-4 sm:p-5 bg-white/[0.02] shadow-glow"
           >
 
             <div className="flex items-center gap-2 mb-3">
-              <MapPin className="w-5 h-5 text-[#3b82f6]" />
+              <MapPin className="w-5 h-5 text-blue-500" />
 
               <h2 className="text-base sm:text-lg font-semibold">
                 FIND US HERE
@@ -247,13 +180,13 @@ export default function ContactUsPage() {
                 relative
                 block
                 w-full
-                h-[235px]
                 sm:h-[250px]
                 lg:h-[260px]
                 rounded-xl
                 overflow-hidden
                 bg-[#0b1220]
                 border border-white/5
+                shadow-glow
                 group
               "
             >
@@ -281,8 +214,8 @@ export default function ContactUsPage() {
                 <MapPin
                   className="
                     w-10 h-10
-                    text-[#3b82f6]
-                    fill-[#3b82f6]
+                    text-blue-500
+                    fill-blue-500
                     drop-shadow-[0_0_12px_rgba(59,130,246,0.7)]
                     group-hover:scale-110
                     transition-transform
@@ -297,7 +230,7 @@ export default function ContactUsPage() {
                   absolute
                   bottom-3
                   left-3
-                  right-3
+                       text-blue-500
                   text-center
                   text-xs
                   sm:text-sm
@@ -334,8 +267,8 @@ export default function ContactUsPage() {
                 sm:text-sm
                 font-medium
                 tracking-wide
-                hover:border-[#3b82f6]
-                hover:text-[#3b82f6]
+                hover:border-blue-500
+                hover:text-blue-500
                 transition-colors
               "
             >
@@ -355,11 +288,12 @@ export default function ContactUsPage() {
             p-4 sm:p-5
             mb-5
             bg-white/[0.02]
+            shadow-glow
           "
         >
 
           <div className="flex items-center gap-2 mb-4">
-            <Signpost className="w-5 h-5 text-[#3b82f6]" />
+            <Signpost className="w-5 h-5 text-blue-500" />
 
             <h2 className="text-base sm:text-lg font-semibold">
               DIRECTIONS TO COLLEGE
@@ -373,13 +307,14 @@ export default function ContactUsPage() {
               className="
                 rounded-xl
                 border border-white/10
-                bg-[#080d18]
+                bg-phantasm-navy
                 p-4
-                hover:border-[#3b82f6]/40
+                shadow-glow
+                hover:border-blue-500/40
                 transition-colors
               "
             >
-              <h3 className="text-sm sm:text-base font-semibold text-[#3b82f6] mb-2">
+              <h3 className="text-sm sm:text-base font-semibold text-blue-500 mb-2">
                 From Krishnagiri New Bus Stand
               </h3>
 
@@ -393,13 +328,14 @@ export default function ContactUsPage() {
               className="
                 rounded-xl
                 border border-white/10
-                bg-[#080d18]
+                bg-phantasm-navy
                 p-4
-                hover:border-[#3b82f6]/40
+                shadow-glow
+                hover:border-blue-500/40
                 transition-colors
               "
             >
-              <h3 className="text-sm sm:text-base font-semibold text-[#3b82f6] mb-2">
+              <h3 className="text-sm sm:text-base font-semibold text-blue-500 mb-2">
                 From Tirupattur Bus Stand
               </h3>
 
@@ -413,12 +349,13 @@ export default function ContactUsPage() {
               className="
                 md:col-span-2
                 rounded-xl
-                border border-[#3b82f6]/20
-                bg-[#3b82f6]/5
+                border border-blue-500/20
+                bg-blue-500/5
                 p-4
+                shadow-glow
               "
             >
-              <h3 className="text-sm sm:text-base font-semibold text-[#3b82f6] mb-2">
+              <h3 className="text-sm sm:text-base font-semibold text-blue-500 mb-2">
                 Landmark
               </h3>
 
@@ -430,6 +367,7 @@ export default function ContactUsPage() {
             </div>
 
           </div>
+
         </section>
 
       </main>
@@ -453,7 +391,7 @@ export default function ContactUsPage() {
           {/* ================= BRAND ================= */}
           <div>
 
-            <div className="text-lg font-extrabold text-[#3b82f6]">
+            <div className="font-gothic text-lg text-blue-500">
               PHANTASM
             </div>
 
@@ -479,7 +417,7 @@ export default function ContactUsPage() {
           {/* ================= QUICK LINKS ================= */}
           <div>
 
-            <div className="text-sm font-semibold mb-3 border-b-2 border-[#3b82f6] inline-block pb-1">
+            <div className="font-serif2 text-sm font-semibold mb-3 border-b-2 border-blue-500 inline-block pb-1">
               QUICK LINKS
             </div>
 
@@ -502,19 +440,13 @@ export default function ContactUsPage() {
                   <Link
                     to={link.path}
                     className="
-                      hover:text-[#3b82f6]
+                      hover:text-blue-500
                       transition-colors
                       whitespace-nowrap
                     "
                   >
                     {link.name}
                   </Link>
-            <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-gray-300 mt-1">
-              {quickLinks.map((l) => (
-                <li key={l}>
-                  <a href="#" className="hover:text-[#3b82f6] transition-colors">
-                    {l}
-                  </a>
                 </li>
               ))}
             </ul>
@@ -532,7 +464,7 @@ export default function ContactUsPage() {
           {/* ================= FOLLOW US ================= */}
           <div>
 
-            <div className="text-sm font-semibold mb-3 border-b-2 border-[#3b82f6] inline-block pb-1">
+            <div className="font-serif2 text-sm font-semibold mb-3 border-b-2 border-blue-500 inline-block pb-1">
               FOLLOW US
             </div>
 
@@ -549,8 +481,8 @@ export default function ContactUsPage() {
                   rounded-lg
                   border border-white/15
                   flex items-center justify-center
-                  hover:border-[#3b82f6]
-                  hover:text-[#3b82f6]
+                  hover:border-blue-500
+                  hover:text-blue-500
                   transition-colors
                 "
               >
@@ -568,8 +500,8 @@ export default function ContactUsPage() {
                   rounded-lg
                   border border-white/15
                   flex items-center justify-center
-                  hover:border-[#3b82f6]
-                  hover:text-[#3b82f6]
+                  hover:border-blue-500
+                  hover:text-blue-500
                   transition-colors
                 "
               >
@@ -587,8 +519,8 @@ export default function ContactUsPage() {
                   rounded-lg
                   border border-white/15
                   flex items-center justify-center
-                  hover:border-[#3b82f6]
-                  hover:text-[#3b82f6]
+                  hover:border-blue-500
+                  hover:text-blue-500
                   transition-colors
                 "
               >

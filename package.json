@@ -1,30 +1,4 @@
 {
-  "name": "phantasm-contact",
-  "name": "phantasm-schedule",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --host"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "gsap": "^3.15.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.2"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.0.5",
-    "tailwindcss": "^4.3.3",
-    "vite": "^8.2.1"
-  {
   "name": "phantasm-symposium",
   "private": true,
   "version": "1.0.0",
@@ -35,15 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.469.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "^4.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "tailwindcss": "^4.0.0",
+    "gsap": "^3.15.0",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
