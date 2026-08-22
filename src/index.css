@@ -1,5 +1,53 @@
 @import "tailwindcss";
 
+@theme {
+  --font-gothic: "Cinzel Decorative", serif;
+  --font-serif2: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-phantasm-bg: #000000;
+  --color-phantasm-navy: #020617;
+  --color-phantasm-blue: #3b82f6;
+  --color-phantasm-glow: #60a5fa;
+  --color-phantasm-dim: #1e293b;
+
+  --shadow-glow: 0 0 20px rgba(96, 165, 250, 0.6);
+  --shadow-glow-lg: 0 0 40px rgba(96, 165, 250, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: white;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.shadow-glow-lg {
+  box-shadow: var(--shadow-glow-lg);
+}
+
+/* Prevent horizontal overflow on mobile */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+@import "tailwindcss";
+
 body {
   margin: 0;
 }
