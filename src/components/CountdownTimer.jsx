@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Change this to your symposium's actual date
-const TARGET_DATE = new Date('2026-09-19T00:00:00');
+const TARGET_DATE = new Date('2026-09-22T00:00:00');
 
 function getTimeLeft() {
   const now = new Date();
@@ -33,16 +33,16 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="flex gap-3 md:gap-4">
+    <div className="flex gap-2 sm:gap-3 md:gap-4">
       {units.map((unit) => (
         <div
           key={unit.label}
-          className="flex flex-col items-center justify-center w-16 h-16 md:w-20 md:h-20 border border-blue-500/50 rounded-md bg-blue-500/20 shadow-glow backdrop-blur-sm"
+          className="flex flex-col items-center justify-center w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] md:w-20 md:h-20 border border-blue-500/50 rounded-md bg-blue-950/20 shadow-glow backdrop-blur-sm"
         >
-          <span className="font-serif2 text-xl md:text-2xl text-white font-semibold">
+          <span className="font-serif2 text-2xl sm:text-3xl md:text-4xl text-white font-semibold">
             {String(unit.value).padStart(2, '0')}
           </span>
-          <span className="text-[8px] md:text-[9px] text-blue-500 tracking-wider mt-1">
+          <span className="text-[10px] sm:text-xs text-blue-300 tracking-wider mt-1">
             {unit.label}
           </span>
         </div>
