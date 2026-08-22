@@ -1,17 +1,24 @@
 import CountdownTimer from './CountdownTimer';
-import { ChevronDown } from 'lucide-react';
+import { CalendarDays, ChevronDown, Trophy } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden flex items-start justify-start pt-18 md:pt-20">
+    <section className="relative w-full min-h-screen bg-black overflow-x-hidden flex items-start justify-start pt-18 md:pt-20">
       {/* Background layer - Full viewport coverage */}
       <div className="absolute inset-0 top-0 bg-black w-full h-full">
-        {/* Background image with optimal display - fills entire mobile view, same on desktop */}
+        {/* Keep the wide composition for desktop and use the transparent artwork on mobile. */}
         <img
           src="/assets/hero-bg.jpg"
           alt="Phantasm hero background"
-          className="w-full h-full object-cover absolute inset-0"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover hidden md:block"
           style={{ objectPosition: 'center 18%' }}
+        />
+
+        <img
+          src="/assets/dragon-transparent.png"
+          alt=""
+          aria-hidden="true"
+          className="mobile-dragon absolute md:hidden"
         />
 
         {/* Gradient overlays optimized for mobile and desktop */}
@@ -21,41 +28,61 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 h-full flex flex-col md:flex-row md:items-start">
-        <div className="max-w-xl w-full flex flex-col justify-start pt-10 md:pt-10 md:h-auto h-auto pb-20 md:pb-0">
-          <p className="text-blue-500 text-[10px] sm:text-xs md:text-sm tracking-[0.3em] font-body mb-3 sm:mb-4">
+      <div className="relative z-10 max-w-7xl w-full px-[68px] md:px-[90px] min-h-screen flex flex-col md:flex-row md:items-start">
+        <div className="hero-copy max-w-xl w-full flex flex-col justify-start pt-[32px] md:pt-[40px] md:h-auto h-auto pb-10 md:pb-0">
+          <p className="text-blue-400 text-lg sm:text-xl md:text-2xl tracking-[0.3em] font-body mb-3 sm:mb-4">
             WELCOME TO
           </p>
 
-          <h1 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight sm:leading-none drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]">
+          <h1 className="font-gothic text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-tight sm:leading-none drop-shadow-[0_0_25px_rgba(96,165,250,0.5)]">
             PHANTASM
           </h1>
-          <p className="font-serif2 text-blue-500 text-xs sm:text-sm md:text-base tracking-[0.35em] mt-2">
+          <p className="font-serif2 text-blue-200 text-base sm:text-lg md:text-xl tracking-[0.35em] mt-2">
             CSE SYMPOSIUM 2026
           </p>
 
-          <div className="w-16 sm:w-20 h-[2px] bg-blue-500 shadow-glow my-4 sm:my-6" />
+          <div className="w-16 sm:w-20 h-[2px] bg-blue-500 shadow-glow my-3 sm:my-4" />
 
-          <p className="font-serif2 italic text-slate-200 text-sm sm:text-base md:text-lg mb-3 sm:mb-4">
+          <p className="font-serif2 italic text-slate-200 text-base sm:text-lg md:text-xl mb-2 sm:mb-3">
             Ideate • Innovate • Transcend
           </p>
 
-          <p className="font-body text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 max-w-md">
-            A national level technical symposium where bright minds meet, create and shape the future.
+          <p className="max-w-xl font-serif2 font-semibold tracking-wide text-sm sm:text-base md:text-lg leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-blue-400 drop-shadow-[0_0_14px_rgba(96,165,250,0.65)] mb-3 sm:mb-4">
+            A national-level technical symposium where bright minds meet, create, and shape the future.
           </p>
 
-          <p className="text-blue-500 text-[10px] sm:text-xs tracking-[0.3em] font-body mb-4">
+          <p className="text-blue-400 text-sm sm:text-base tracking-[0.3em] font-body mb-3">
             THE COUNTDOWN BEGINS
           </p>
 
           <CountdownTimer />
+
+        
+
+          <div className="mt-4 sm:mt-5 inline-flex w-fit items-center gap-4 sm:gap-5 rounded-md border border-blue-400/35 bg-blue-950/25 px-4 py-3 text-slate-200 shadow-[0_0_24px_rgba(59,130,246,0.2)] backdrop-blur-sm">
+            <div className="flex items-center gap-2">
+              <CalendarDays className="text-blue-400" size={15} />
+              <div>
+                <span className="block text-xs sm:text-sm text-blue-300 tracking-[0.2em] font-body">DATE</span>
+                <span className="font-serif2 text-base sm:text-lg tracking-wide">22/09/26</span>
+              </div>
+            </div>
+            <span className="h-8 w-px bg-blue-400/30" />
+            <div className="flex items-center gap-2">
+              <Trophy className="text-blue-400" size={15} />
+              <div>
+                <span className="block text-xs sm:text-sm text-blue-300 tracking-[0.2em] font-body">POOL PRIZE</span>
+                <span className="font-serif2 text-base sm:text-lg tracking-wide">30,000</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Scroll to explore - Hidden on mobile, visible on tablet+ */}
       <div className="hidden sm:flex absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1 animate-bounce">
-        <ChevronDown className="text-blue-500" size={18} />
-        <span className="text-blue-500 text-[10px] tracking-[0.3em] font-body">
+        <ChevronDown className="text-blue-400" size={18} />
+        <span className="text-blue-300 text-xs sm:text-sm tracking-[0.3em] font-body">
           SCROLL TO EXPLORE
         </span>
       </div>
