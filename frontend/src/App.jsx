@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom'
 import Events from './pages/Events'
 import EventDetails from './pages/EventDetails'
@@ -18,7 +18,11 @@ function PageLoader() {
 function EventsPage() {
   const navigate = useNavigate()
 
-  return <Events onSelectEvent={(id) => navigate(`/events/${id}`)} />
+  return (
+    <div className="event-app">
+      <Events onSelectEvent={(id) => navigate(`/events/${id}`)} />
+    </div>
+  )
 }
 
 function EventDetailsPage() {
@@ -26,10 +30,9 @@ function EventDetailsPage() {
   const { eventId } = useParams()
 
   return (
-    <EventDetails
-      eventId={eventId}
-      onBack={() => navigate('/events')}
-    />
+    <div className="event-app">
+      <EventDetails eventId={eventId} onBack={() => navigate('/events')} />
+    </div>
   )
 }
 
