@@ -1,38 +1,13 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Base URL for the Express API. In dev, Vite proxies /api to the backend
+// (see vite.config.js), so a relative path works out of the box. In
+// production you can point this at a deployed API via VITE_API_BASE_URL.
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
 
-async function request(path, options = {}) {
+export async function apiFetch(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+    credentials: "include",
+    headers: options.body ? { "Content-Type": "application/json" } : undefined,
     ...options,
   });
-
-  let data = null;
-  try {
-    data = await res.json();
-  } catch {
-    // no JSON body
-  }
-
-  if (!res.ok) {
-    throw new Error(data?.message || 'Something went wrong. Please try again.');
-  }
-
-  return data;
+  return res;
 }
-
-export const registerUser = (payload) =>
-  request('/auth/register', { method: 'POST', body: JSON.stringify(payload) });
-
-export const loginUser = (payload) =>
-  request('/auth/login', { method: 'POST', body: JSON.stringify(payload) });
-
-export const logoutUser = () => request('/auth/logout', { method: 'POST' });
-
-export const fetchCurrentUser = () => request('/auth/me', { method: 'GET' });
-
-export const requestPasswordReset = (email) =>
-  request('/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) });
-
-export const resetPassword = (token, password) =>
-  request('/auth/reset-password', { method: 'POST', body: JSON.stringify({ token, password }) });

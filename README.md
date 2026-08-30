@@ -1,75 +1,98 @@
-# Phantasm — Login/Register/Forgot-Password App
+# Phantasm 2026 — Fest Registration
 
-Full stack now: your existing React frontend + a new **Node.js 22 + Express + PostgreSQL** backend.
+Full-stack registration + payment + admin ledger app.
 
+- **Frontend**: React 19 + Vite + Tailwind CSS 4 (unchanged look & flow — see `frontend/`)
+- **Backend**: Node.js 22 + Express (`backend/`)
+- **Database**: PostgreSQL
+- **Payments**: Cashfree, with an automatic mock mode when no API keys are set
+- **Email**: Nodemailer (SMTP), with an automatic console-log mode when no SMTP is set
+
+## What was added to the original frontend-only zip
+
+- `backend/` — a complete Express + PostgreSQL API implementing every
+  endpoint the frontend already called (`/api/register`, `/api/team`,
+  `/api/payment/create`, `/api/payment/verify`, `/api/admin/*`).
+- `frontend/vite.config.js` — was missing from the original zip; without it
+  Vite can't run. Sets up the React + Tailwind plugins and a dev proxy so
+  `/api/*` calls reach the backend during local development.
+- `frontend/.env.example` — for pointing the built frontend at a deployed
+  backend URL in production.
+- **Forgot-password flow** in `frontend/src/pages/Admin.jsx`: a "Forgot
+  password?" link on the admin login screen, a request-reset screen, and a
+  set-new-password screen (reached via the emailed link's `?reset_token=`
+  query param). Backed by `POST /api/admin/forgot-password` and
+  `POST /api/admin/reset-password`, which email a 30-minute reset link via
+  Nodemailer.
+- `docker-compose.yml` — one command to get a local Postgres running.
+
+The rest of the frontend (`src/components`, `src/pages/Home.jsx`,
+`src/pages/Events.jsx`, `src/lib/events.js`, styling, animations) is
+untouched — it was already clean, with no dead code, console logs, or
+unused files to remove.
+
+## Quick start
+
+### 1. Database
+
+```bash
+docker compose up -d          # starts Postgres on localhost:5432
 ```
-project/
-├─ frontend/          your original Vite/React app (routes wired to real API calls)
-└─ backend/            new Express API + PostgreSQL
-```
 
-## 1. Backend setup
+(Or point `DATABASE_URL` in `backend/.env` at any Postgres instance you already have.)
+
+### 2. Backend
 
 ```bash
 cd backend
+cp .env.example .env          # then edit .env — see below
 npm install
-cp .env.example .env      # edit DB creds / JWT secret
+npm run migrate               # creates tables
+npm run seed:admin            # creates the admin login from ADMIN_EMAIL/ADMIN_PASSWORD in .env
+npm run dev                   # http://localhost:4000
 ```
 
-Create the database (adjust name/user to match your .env):
+Key `.env` values:
+- `DATABASE_URL` — defaults match `docker-compose.yml`.
+- `SESSION_SECRET` — any long random string.
+- `ADMIN_EMAIL` / `ADMIN_PASSWORD` — used once by `npm run seed:admin` to create the admin account. Change the password afterwards via the "Forgot password?" flow.
+- `SMTP_*` — real SMTP creds to actually send emails (registration confirmations, password resets). Leave blank to have emails printed to the backend console instead — the app works fully without them, just without real delivery.
+- `CASHFREE_APP_ID` / `CASHFREE_SECRET_KEY` — real Cashfree sandbox/production credentials. Leave blank to run in mock-payment mode (orders are auto-marked PAID), useful for demos.
 
-```bash
-createdb phantasm
-```
-
-Run migrations (creates `users` and `password_reset_tokens` tables):
-
-```bash
-npm run migrate
-```
-
-Start the API:
-
-```bash
-npm run dev      # auto-restarts on changes (Node 22 --watch)
-# or
-npm start
-```
-
-API runs at `http://localhost:5000`, endpoints under `/api/auth`:
-
-| Method | Route                     | Body                                      |
-|--------|---------------------------|--------------------------------------------|
-| POST   | `/api/auth/register`      | `{ name, email, mobile, password }`        |
-| POST   | `/api/auth/login`         | `{ email, password }`                      |
-| POST   | `/api/auth/logout`        | –                                          |
-| GET    | `/api/auth/me`            | – (requires auth cookie or Bearer token)   |
-| POST   | `/api/auth/forgot-password` | `{ email }`                              |
-| POST   | `/api/auth/reset-password`  | `{ token, password }`                    |
-
-Security notes:
-- Passwords hashed with bcrypt (12 rounds).
-- JWT issued on register/login, set as an httpOnly cookie **and** returned in the JSON body (so the SPA can also use `Authorization: Bearer <token>` if you prefer localStorage).
-- `forgot-password` never reveals whether an email exists; in non-production mode it also returns the raw reset token in the response (`devResetToken`) so you can test the flow without wiring up an email provider yet. Wire real email sending (e.g. via a transactional email API) before going to production, and remove `devResetToken` from the response at that point.
-- Rate limiting (20 requests / 15 min) on all auth endpoints.
-
-## 2. Frontend setup
+### 3. Frontend
 
 ```bash
 cd frontend
 npm install
-cp .env.example .env      # VITE_API_URL, defaults to http://localhost:5000/api
-npm run dev
+npm run dev                   # http://localhost:5173, proxies /api to :4000
 ```
 
-The Login, Register, and Forgot Password pages now call the backend via `src/lib/api.js` instead of `alert()`/`localStorage` stubs, with loading states and inline error messages.
+Visit `http://localhost:5173`. The admin ledger is at `/admin` (password set via `ADMIN_PASSWORD` during seeding).
 
-## 3. Running both together
+## Production build
 
-Open two terminals: one running the backend (`npm run dev` in `backend/`), one running the frontend (`npm run dev` in `frontend/`). The frontend dev server (Vite, port 5173) is already allowed by the backend's CORS config (`CLIENT_ORIGIN` in `.env`).
+```bash
+cd frontend
+npm run build                 # outputs static files to frontend/dist
+```
 
-## What's still on you
+Serve `frontend/dist` from any static host, and set `VITE_API_BASE_URL` (frontend `.env`) to your deployed backend's URL before building. Run the backend with `npm start` behind a process manager (pm2, systemd, a container, etc.), pointed at your production Postgres and SMTP/Cashfree credentials.
 
-- No protected "dashboard" page exists yet — after login the app just shows a success alert. Add a route + guard (check `/api/auth/me`) when you're ready for a post-login page.
-- Password reset emails aren't actually sent — the token is logged to the server console / returned in dev mode. Plug in an email provider (Resend, SES, SendGrid, etc.) in `authController.js` → `forgotPassword`.
-- For production: set `NODE_ENV=production`, use a strong random `JWT_SECRET`, run behind HTTPS (so the `secure` cookie flag applies), and point `DATABASE_URL` at your managed Postgres instance.
+## API summary
+
+| Method | Path                          | Purpose                                   |
+|--------|-------------------------------|--------------------------------------------|
+| POST   | `/api/register`               | Create a registration + event entries      |
+| GET    | `/api/team`                   | Look up an existing team by name + event   |
+| POST   | `/api/payment/create`         | Create a Cashfree order (or mock)          |
+| GET    | `/api/payment/verify`         | Verify payment, mark paid, send confirmation email |
+| POST   | `/api/admin/login`            | Admin session login                        |
+| POST   | `/api/admin/logout`           | Admin session logout                       |
+| GET    | `/api/admin/session`          | Check current admin session                |
+| GET    | `/api/admin/registrations`    | Full ledger (requires admin session)       |
+| POST   | `/api/admin/forgot-password`  | Emails a password-reset link                |
+| POST   | `/api/admin/reset-password`   | Sets a new password from a reset token      |
+
+All pricing and event/roster rules are re-validated server-side against `backend/src/data/events.js` — the client-submitted payload is never trusted for prices.
+
+This whole stack was installed, migrated, seeded, and exercised end-to-end (registration → payment → verification → confirmation email, and admin login → forgot-password → email → reset → re-login) during development to confirm it works.
